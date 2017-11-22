@@ -2,12 +2,23 @@
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import SUPERUSER_ID
 from datetime import datetime
+import logging
+
+from openerp import SUPERUSER_ID
+
+_logger = logging.getLogger(__name__)
 
 
 def migrate(cr, version):
     if not version:
+        return
+    cr.execute("""
+        SELECT 1 FROM information_schema.columns
+        WHERE table_name=%s and column_name=%s;
+    """, ('res_partner', 'sale_type'))
+    if not cr.rowcount:
+        _logger.error("Can't find 'sale_type' field, skipping...")
         return
     cr.execute(
         "SELECT id, sale_type FROM res_partner WHERE sale_type IS NOT NULL")
