@@ -110,13 +110,6 @@ class SaleOrderRecommendation(models.TransientModel):
             if i == self.line_amount:
                 break
 
-    @api.model
-    def create(self, vals):
-        if 'line_ids' in vals:
-            vals['line_ids'] = [
-                line for line in vals['line_ids'] if line[2]["is_modified"]]
-        return super(SaleOrderRecommendation, self).create(vals)
-
     @api.multi
     def action_accept(self):
         """Propagate recommendations to sale order."""
@@ -163,7 +156,6 @@ class SaleOrderRecommendationLine(models.TransientModel):
     product_id = fields.Many2one(
         "product.product",
         string="Product",
-        readonly=True,
     )
     price_unit = fields.Monetary(
         compute="_compute_price_unit",
