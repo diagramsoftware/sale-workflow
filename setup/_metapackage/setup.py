@@ -25,6 +25,7 @@ setuptools.setup(
         'odoo11-addon-sale_order_invoicing_finished_task',
         'odoo11-addon-sale_order_line_date',
         'odoo11-addon-sale_order_line_input',
+        'odoo11-addon-sale_order_line_sequence',
         'odoo11-addon-sale_order_price_recalculation',
         'odoo11-addon-sale_order_product_recommendation',
         'odoo11-addon-sale_order_revision',
@@ -34,7 +35,9 @@ setuptools.setup(
         'odoo11-addon-sale_product_set_variant',
         'odoo11-addon-sale_quotation_number',
         'odoo11-addon-sale_start_end_dates',
+        'odoo11-addon-sale_stock_picking_blocking',
         'odoo11-addon-sale_stock_picking_note',
+        'odoo11-addon-sales_team_security',
     ],
     classifiers=[
         'Programming Language :: Python',
